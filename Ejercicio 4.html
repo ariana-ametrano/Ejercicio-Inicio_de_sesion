@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ariana Ametrano</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script src="https://unpkg.com/prop-types@15.8.1/prop-types.js"></script>
+    <script type="text/babel">
+        const rootElement = document.getElementById('root')
+
+        function Sesion(){
+            const [usuario, setUsuario] = React.useState('')
+            const handelChange = event => setUsuario(event.target.value)
+            const [contraseña, setContraseña] = React.useState('')
+            const handelChangeC = event => setContraseña(event.target.value)
+                
+            return(
+                <>
+                { usuario? <p>Hola, {usuario}</p> : 'Ingrese su nombre'}
+                    <div style = {{display: "flex",flexDirection: "column", while: "20%"}}>
+                        <form>
+                            <input type="text" onChange={handelChange} value={usuario}/>
+                        </form>
+                        <form>
+                            <input style ={{marginTop: "10px"}} type="password" onChange={handelChangeC} value={contraseña}/>
+                        </form>
+                        {contraseña ? <></> : 'Ingrese su contraseña'}
+                        {contraseña.length !== 0 && (<h3 style = { {color: contraseña.length>= 8? 'green' : 'red'}}>{contraseña.length>=8 ? "Su contraseña es segura" : "La contraseña tiene que tener al menos 8 caracteres"}</h3>)}
+
+                    </div>
+                
+                </>
+            )
+          
+        }
+
+        ReactDOM.render(<Sesion/>, rootElement)
+    </script>
+</body>
+</html>
